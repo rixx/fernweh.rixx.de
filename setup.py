@@ -21,5 +21,7 @@ setup(
         "python-dateutil",
         "python-frontmatter==0.5.*",
         "requests",
+        "smartypants",
+        "unidecode",
     ],
 )

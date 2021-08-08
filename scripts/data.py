@@ -19,7 +19,7 @@ def get_location_data(address=True, metadata=True):
     nominatim_url = "https://nominatim.openstreetmap.org/search.php"
 
     while not osm_place:
-        name = inquirer.text_input(message="What’s the name of the location?")
+        name = inquirer.text(message="What’s the name of the location?")
         results = request("get", nominatim_url, params={"q": name, "format": "jsonv2"})
         if len(results) == 0:
             print("No location found!")

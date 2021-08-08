@@ -30,7 +30,7 @@ def slugify(text):
     return ascii_text
 
 
-def get_date(prompt, default, allow_empty=False):
+def get_date(prompt, default="today", allow_empty=False):
     choices = ["today", "yesterday", "another day"]
     if default:
         choices.append(default)
@@ -194,7 +194,7 @@ class Report:
         self.save()
 
     def clean(self):
-        required = ("name", "description", "lat", "lon")
+        required = ("name", "lat", "lon")
         if any(not self.metadata["location"].get(key) for key in required):
             raise Exception(
                 "Missing required metadata! Has to include name, description, lat and lon."
@@ -343,7 +343,7 @@ def get_journey_data(metadata, entry_type):
         "legs": [],
     }
     leg_count = int(
-        inquirer.text_input(message=questions["leg_count"][entry_type], default="1")
+        inquirer.text(message=questions["leg_count"][entry_type], default="1")
     )
     last_end = None
 
@@ -360,9 +360,9 @@ def get_journey_data(metadata, entry_type):
                 "lon": metadata["location"]["lon"],
             }
 
-    total_cost = None
-    total_distance = None
-    total_duration = None
+    total_cost = 0
+    total_distance = 0
+    total_duration = 0
     for count in range(1, leg_count + 1):
         click.echo(f"Leg {count}")
         if last_end or count > 1:
@@ -389,9 +389,11 @@ def get_journey_data(metadata, entry_type):
             "cost": None,
         }
         if transport == "train":
-            leg["cost"] = inquirer.text_input(message="How much does this leg cost?")
+            leg["cost"] = inquirer.text(message="How much does this leg cost?")
         if transport != "train":
-            route_data = data.get_komoot_route(get_coordinates(start), get_coordinates(end))
+            route_data = data.get_komoot_route(
+                get_coordinates(start), get_coordinates(end)
+            )
             leg["distance"] = route_data["distance"]
 
         if transport == "bike":
@@ -399,21 +401,23 @@ def get_journey_data(metadata, entry_type):
             leg["komoot_id"] = route_data["komoot_id"]
         else:
             leg["duration"] = int(
-                inquirer.text_input(message="How many minutes does this leg take?")
+                inquirer.text(message="How many minutes does this leg take?")
             )
         total_duration += leg["duration"] or 0
         total_distance += leg["distance"] or 0
         total_cost += leg["cost"] or 0
         journey["legs"].append(leg)
 
-    journey["cost"] = inquirer.text_input(
-        f"Total journey cost (calculated: {total_cost}€)"
+    journey["distance"] = inquirer.text(
+        f"Total journey distance (calculated: {total_distance}km)",
+        default=total_distance,
     )
-    journey["duration"] = inquirer.text_input(
-        f"Total journey duration, human readable (calculated: {total_duration} minutes)"
+    journey["duration"] = inquirer.text(
+        f"Total journey duration, human readable (calculated: {total_duration} minutes)",
+        default=total_duration,
     )
-    journey["distance"] = inquirer.text_input(
-        f"Total journey distance (calculated: {total_distance}km)"
+    journey["cost"] = inquirer.text(
+        f"Total journey cost (calculated: {total_cost}€)", default=total_cost
     )
     return journey
 
@@ -449,7 +453,7 @@ def create_journey():
     report = Report(metadata=metadata, text="", entry_type=entry_type)
     report.save()
 
-    report.download_cover(force_new=True, url=metadata["location"]["cover_image_url"])
+    report.download_cover(metadata["location"]["cover_image_url"], force_new=True)
     report.save()
 
     report.edit()
@@ -504,11 +508,11 @@ def _change_manually(report):
 def _change_cover(report):
     url = inquirer.text(message="Cover image URL")
     attribution = inquirer.text(message="Cover image attribution")
-    report.download_cover(url=url, attribution=attribution, force_new=True)
+    report.download_cover(url, attribution=attribution, force_new=True)
     report.show_cover()
 
 
-def change_report():
+def change_journey():
     report = get_location_from_user()
     while True:
         action = inquirer.list_input(
@@ -526,9 +530,9 @@ def change_report():
         if action == "quit":
             return
         if action == "location":
-            return change_report()
+            return change_journey()
         globals()[f"_change_{action}"](
             report=report,
         )
         if action == "remove":
-            return change_report()
+            return change_journey()
