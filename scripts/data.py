@@ -19,7 +19,7 @@ def get_location_data(address=True, metadata=True):
 
     while not osm_place:
         name = inquirer.text_input(message="What’s the name of the location?")
-        result = request("get", nominatim_url, params={"q": name, "format": "jsonv2"})
+        results = request("get", nominatim_url, params={"q": name, "format": "jsonv2"})
         if len(results) == 0:
             print("No location found!")
             continue
@@ -47,7 +47,7 @@ def get_location_data(address=True, metadata=True):
     if address:
         try:
             address_url = "https://nominatim.openstreetmap.org/lookup?osm_ids=N6107050239&format=json"
-            result = result(
+            result = request(
                 "get",
                 address_url,
                 params={
@@ -63,7 +63,7 @@ def get_location_data(address=True, metadata=True):
                 "state": result.get("state", ""),
                 "country": result.get("country", ""),
             }
-        except:
+        except Exception:
             pass
 
     if metadata:
@@ -91,7 +91,7 @@ def get_location_data(address=True, metadata=True):
 
             if wikidata_id:
                 add_wikidata_information(location, wikidata_id)
-        except:
+        except Exception:
             pass
     return location
 
@@ -150,7 +150,7 @@ def add_wikidata_information(location, wikidata_id):
         click.echo(
             f"Please take care to look at the license at f{result['descriptionurl']} to make sure you're allowed to use it!"
         )
-        choice = inquierer.list_input(
+        choice = inquirer.list_input(
             message="Use this image?",
             choices=[("Yes", True), ("Different image", False), ("No image", None)],
         )

@@ -1,12 +1,9 @@
 import datetime as dt
 import glob
-import math
 import os
-import random
 import re
 import shutil
 import subprocess
-from contextlib import suppress
 from functools import cached_property
 from pathlib import Path
 from urllib.request import urlretrieve
@@ -14,11 +11,9 @@ from urllib.request import urlretrieve
 import click
 import frontmatter
 import inquirer
-import requests
 from unidecode import unidecode
 
-from . import goodreads
-from .data import choose_spine_color
+from . import data
 
 
 HOME_LAT = "52.741860"
@@ -160,7 +155,6 @@ class Report:
         entry_type,
         save=True,
     ):
-        old_path = self.path or ""
         if entry_type != self.entry_type:
             if entry_type not in ("reports", "plans"):
                 raise Exception(f"Invalid entry_type {entry_type}")
@@ -242,7 +236,6 @@ class Report:
         if attribution:
             self.metadata["location"]["cover_image_attribution"] = attribution
         del self.cover_path
-        choose_page_color(self)
         return self.cover_path
 
     @property
@@ -302,7 +295,7 @@ def get_location_from_input():
     home_url = answers.pop("home_url")
 
     if wiki_url or home_url:
-        result["urls"] = {"wikipedia": wiki_url, "home": home_url}
+        answers["urls"] = {"wikipedia": wiki_url, "home": home_url}
     return answers
 
 
@@ -399,7 +392,7 @@ def get_journey_data(metadata, entry_type):
         if transport == "train":
             leg["cost"] = inquirer.text_input(message="How much does this leg cost?")
         if transport != "train":
-            route_data = get_komoot_route(get_coordinates(start), get_coordinates(end))
+            route_data = data.get_komoot_route(get_coordinates(start), get_coordinates(end))
             leg["distance"] = route_data["distance"]
 
         if transport == "bike":
@@ -510,11 +503,10 @@ def _change_manually(report):
 
 
 def _change_cover(report):
-    old_cover_url = report.metadata["location"]["cover_image_url"]
     url = inquirer.text(message="Cover image URL")
     attribution = inquirer.text(message="Cover image attribution")
-    review.download_cover(url=url, attribution=attribution, force_new=True)
-    review.show_cover()
+    report.download_cover(url=url, attribution=attribution, force_new=True)
+    report.show_cover()
 
 
 def change_report():

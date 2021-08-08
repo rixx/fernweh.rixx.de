@@ -1,10 +1,7 @@
-import json
-import pathlib
 import sys
 
 import click
 import inquirer
-from rauth.service import OAuth1Service
 
 from .travel import create_journey, change_journey
 from .renderer import build_site
