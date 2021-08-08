@@ -1,5 +1,6 @@
-import click
 import hashlib
+
+import click
 import inquirer
 import requests
 

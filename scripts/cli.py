@@ -3,8 +3,8 @@ import sys
 import click
 import inquirer
 
-from .travel import create_journey, change_journey
 from .renderer import build_site
+from .travel import change_journey, create_journey
 
 
 @click.group(invoke_without_command=True)

@@ -15,7 +15,6 @@ from unidecode import unidecode
 
 from . import data
 
-
 HOME_LAT = "52.741860"
 HOME_LON = "13.265480"
 
