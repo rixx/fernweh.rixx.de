@@ -29,25 +29,25 @@ def cli(*lol, **trololol):
 
 @cli.command()
 def build():
-    """ Build the site, putting output into _html/ """
+    """Build the site, putting output into _html/"""
     build_site()
 
 
 @cli.command()
 def new():
-    """ Add a new journey """
+    """Add a new journey"""
     create_journey()
 
 
 @cli.command()
 def add():
-    """ Add a new journey """
+    """Add a new journey"""
     create_journey()
 
 
 @cli.command()
 def edit():
-    """ Edit a journey """
+    """Edit a journey"""
     change_journey()
 
 
