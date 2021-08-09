@@ -1,0 +1,14 @@
+<header>
+  <div id="sidenav-left" class="sidenav">
+    <a id="site-title" href="/">🥾 fernweh</a>
+  </div>
+  <nav id="nav-links">
+    <a href="/plans"{% if active == "plans" %} class="active"{% endif %}>Plans</a>
+      <span class="sep"> · </span>
+    <a href="/reports"{% if active == "reports" %} class="active"{% endif %}>Done</a>
+      <span class="sep"> · </span>
+  </nav>
+
+  <div id="sidenav-right" class="sidenav">
+  </div>
+</header>

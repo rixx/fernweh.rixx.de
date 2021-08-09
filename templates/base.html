@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--<link rel="alternate" type="application/atom+xml" title="Atom feed" href="/feed.atom">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed: only reviews" href="/reviews.atom">-->
+
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/fonts/stylesheet.css">
+    <link rel="stylesheet" href="/static/leaflet.css">
+
+    <script src="/static/leaflet.js" defer></script>
+
+    {% block head_content %}{% endblock %}
+
+    <title>{% if title %}{{ title | smartypants | safe }} {% endif %}🥾 fernweh</title>
+  </head>
+  <body>
+    {% include "_header.html" %}
+
+    <main{% block main_class %}{% endblock %}>
+      {% block content %}{% endblock %}
+    </main>
+
+    {% include "_footer.html" %}
+  </body>
+</html>
