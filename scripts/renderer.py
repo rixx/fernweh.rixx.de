@@ -131,6 +131,6 @@ def build_site(**kwargs):
     rsync(source="static/", destination="_html/static/")
 
     # Render the front page
-    render( "index.html", "index.html")
+    render("index.html", "index.html")
 
     print("✨ Rendered HTML files to _html ✨")

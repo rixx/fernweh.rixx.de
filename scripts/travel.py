@@ -116,13 +116,16 @@ class Report:
 
     @property
     def relevant_date(self):
+        result = None
         if self.entry_type == "reports":
             result = sorted([visit["start_time"] for visit in self.metadata["visits"]])[
                 -1
             ]
-        else:
-            result = self.metadata["plan"].get(
-                "start_time", self.metadata["plan"]["date_added"]
+
+        if not result:
+            result = (
+                self.metadata["plan"].get("start_time")
+                or self.metadata["plan"]["date_added"]
             )
         if isinstance(result, dt.date):
             return result

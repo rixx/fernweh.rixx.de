@@ -263,3 +263,7 @@ def get_komoot_route(start, end):
     duration = int(result["duration"] / 60)  # minutes
     komoot_id = result["query"]  # https://www.komoot.de/plan/tour/{query}
     return {"distance": distance, "duration": duration, "komoot_id": komoot_id}
+
+
+# google maps:
+# https://www.google.com/maps/dir/?api=1&origin=52.741860,13.265480&destination=51.6208708,13.5638026&travelmode=transit
