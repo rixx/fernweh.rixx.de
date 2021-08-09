@@ -428,14 +428,11 @@ def create_journey():
         ],
         carousel=True,
     )
-    get_apis = get_yesno("Do you want to get the location data from APIs?")
-
     metadata = None
-    if get_apis:
-        try:
-            metadata = {"location": data.get_location_data()}
-        except Exception as e:
-            print(f"Could not get API data: {e}")
+    try:
+        metadata = {"location": data.get_location_data()}
+    except Exception as e:
+        print(f"Could not get API data: {e}")
 
     if not metadata:
         metadata = {"location": get_location_from_input()}
