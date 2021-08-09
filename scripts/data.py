@@ -191,9 +191,11 @@ def add_wikidata_information(location, wikidata_id):
     if image_filename:
         image_filename = image_filename.replace(" ", "_")
         image_md5 = hashlib.md5(image_filename.encode()).hexdigest()
+        # Only quote the last part of the URL, and only here. Screws with APIs otherwise
+        # Also, make sure the image is of okay size and a JPG
         location[
             "cover_image_url"
-        ] = f"https://upload.wikimedia.org/wikipedia/commons/{image_md5[0]}/{image_md5[:2]}/{quote(image_filename)}"  # Only quote the last part of the URL, and only here. Screws with APIs otherwise
+        ] = f"https://upload.wikimedia.org/wikipedia/commons/thumb/{image_md5[0]}/{image_md5[:2]}/{quote(image_filename)}/600px-a.jpg"
 
         url = "https://en.wikipedia.org/w/api.php"
         result = request(
