@@ -131,6 +131,11 @@ def build_site(**kwargs):
     rsync(source="static/", destination="_html/static/")
 
     # Render the front page
-    render("index.html", "index.html", plans=all_plans, reports=all_reports)
+    render(
+        "index.html",
+        "index.html",
+        plans=sorted(all_plans, key=lambda x: x.overview["distance"]["bike"]),
+        reports=all_reports,
+    )
 
     print("✨ Rendered HTML files to _html ✨")
