@@ -2,7 +2,28 @@
 
 {% block content %}
 
-<div id="map"></div>
+<div id="map-wrapper">
+  <div id="travel-sidebar">
+    {% for plan in plans + reports %}
+    <a href="/{{ plan.id }}">
+      <div class="list-location" id="{{ plan.id }}">
+	<img src="/{{ plan.id }}/cover.jpg" />
+	<div class="location-content">
+	  <h3 class="location-name">{{ plan.metadata["location"]["name"] }}</h3>
+	  <div class="location-details">
+	    📏&nbsp;{{ plan.overview["distance"]["total"] }}&nbsp;km ·
+	    ⌚&nbsp;{{ plan.overview["duration"]["total"] }}&nbsp;min ·
+	    🚲&nbsp;{{ plan.overview["distance"]["bike"] }}&nbsp;km ·
+	    🚂&nbsp;{{ plan.overview["duration"]["train"] }}&nbsp;min
+	  </div>
+	</div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div id="map"></div>
+</div>
 
 <script>
 const outdoors = L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=1030fc88d5594969a9edfb43cd9d0742', {

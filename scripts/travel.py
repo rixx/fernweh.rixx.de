@@ -135,6 +135,25 @@ class Report:
     def id(self):
         return self.slug
 
+    @cached_property
+    def overview(self):
+        if self.entry_type == "reports":
+            visit = sorted([visit["start_time"] for visit in self.metadata["visits"]])[
+                -1
+            ]
+        else:
+            visit = self.metadata["plan"]
+        result = {
+            "distance": {"total": visit["distance"] or 0, "bike": 0, "train": 0},
+            "cost": {"total": visit["cost"] or 0, "bike": 0, "train": 0},
+            "duration": {"total": visit["duration"] or 0, "bike": 0, "train": 0},
+        }
+        for leg in visit["legs"]:
+            result["distance"][leg["transport"]] += float(leg["distance"] or 0)
+            result["cost"][leg["transport"]] += float(leg["cost"] or 0)
+            result["duration"][leg["transport"]] += float(leg["duration"] or 0)
+        return result
+
     @property
     def first_paragraph(self):
         return self.text.strip().split("\n\n")[0] if self.text else ""
