@@ -1,4 +1,5 @@
 import hashlib
+from urllib.parse import quote
 
 import click
 import inquirer
@@ -188,7 +189,9 @@ def add_wikidata_information(location, wikidata_id):
             pass
 
     if image_filename:
+        image_filename = image_filename.replace(" ", "_")
         image_md5 = hashlib.md5(image_filename.encode()).hexdigest()
+        image_filename = quote(image_filename)  # Only quote AFTER calculating the hash!
         location[
             "cover_image_url"
         ] = f"https://upload.wikimedia.org/wikipedia/commons/{image_md5[0]}/{image_md5[:2]}/{image_filename}"
@@ -224,6 +227,7 @@ def add_wikidata_information(location, wikidata_id):
         choice = inquirer.list_input(
             message="Use this image?",
             choices=[("Yes", True), ("Different image", False), ("No image", None)],
+            default=True,
         )
 
         if choice is True:

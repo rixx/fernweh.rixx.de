@@ -345,7 +345,7 @@ def get_journey_data(metadata, entry_type):
     leg_count = int(
         inquirer.text(message=questions["leg_count"][entry_type], default="1")
     )
-    last_end = None
+    end = None
 
     def get_coordinates(place):
         if isinstance(place, Report):
@@ -365,8 +365,8 @@ def get_journey_data(metadata, entry_type):
     total_duration = 0
     for count in range(1, leg_count + 1):
         click.echo(f"Leg {count}")
-        if last_end or count > 1:
-            start = last_end
+        if end or count > 1:
+            start = end
         else:
             start = inquire_location(prompt=questions["start"][entry_type])
         if count == leg_count and entry_type == "plans":
@@ -388,13 +388,10 @@ def get_journey_data(metadata, entry_type):
             "duration": None,
             "cost": None,
         }
+        route_data = data.get_komoot_route(get_coordinates(start), get_coordinates(end))
+        leg["distance"] = route_data["distance"]
         if transport == "train":
             leg["cost"] = inquirer.text(message="How much does this leg cost?")
-        if transport != "train":
-            route_data = data.get_komoot_route(
-                get_coordinates(start), get_coordinates(end)
-            )
-            leg["distance"] = route_data["distance"]
 
         if transport == "bike":
             leg["duration"] = route_data["duration"]
@@ -403,9 +400,9 @@ def get_journey_data(metadata, entry_type):
             leg["duration"] = int(
                 inquirer.text(message="How many minutes does this leg take?")
             )
-        total_duration += leg["duration"] or 0
-        total_distance += leg["distance"] or 0
-        total_cost += leg["cost"] or 0
+        total_duration += int(leg["duration"] or 0)
+        total_distance += float(leg["distance"] or 0)
+        total_cost += float(leg["cost"] or 0)
         journey["legs"].append(leg)
 
     journey["distance"] = inquirer.text(
@@ -453,8 +450,9 @@ def create_journey():
     report = Report(metadata=metadata, text="", entry_type=entry_type)
     report.save()
 
-    report.download_cover(metadata["location"]["cover_image_url"], force_new=True)
-    report.save()
+    if metadata["location"].get("cover_image_url"):
+        report.download_cover(metadata["location"]["cover_image_url"], force_new=True)
+        report.save()
 
     report.edit()
 
