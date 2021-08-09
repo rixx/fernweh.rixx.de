@@ -88,7 +88,7 @@ def build_site(**kwargs):
     env.filters["render_markdown"] = render_markdown
     env.filters["render_date"] = render_date
     env.filters["smartypants"] = smartypants.smartypants
-    render = partial(render_page, env=env)
+    render = partial(render_page, env=env, home=(travel.HOME_LAT, travel.HOME_LON))
 
     print("📔 Loading reports from files")
     all_plans = sorted(
@@ -131,6 +131,6 @@ def build_site(**kwargs):
     rsync(source="static/", destination="_html/static/")
 
     # Render the front page
-    render("index.html", "index.html")
+    render("index.html", "index.html", plans=all_plans, reports=all_reports)
 
     print("✨ Rendered HTML files to _html ✨")

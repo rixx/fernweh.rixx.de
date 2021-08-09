@@ -205,6 +205,16 @@ header a {
 #nav-links a.active, #nav-links a:hover {
   text-decoration: underline;
 }
+#map {
+  min-height: 80vh;
+}
+.leaflet-popup-content {
+  min-width: min-content;
+}
+.leaflet-popup-content img {
+  width: 100%;
+  min-width: 220px;
+}
 
 @media (max-width: 480px) {
   main {
