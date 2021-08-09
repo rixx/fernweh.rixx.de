@@ -32,6 +32,7 @@ plan:
   - cost: '7'
     distance: 50.54
     duration: 90
+    transport: train
     end_location: &id001
       lat: '52.3940653'
       lon: '13.1288573'
@@ -39,6 +40,7 @@ plan:
     start_location: home
   - cost: null
     distance: 62.06
+    transport: bike
     duration: 222
     end_location: null
     komoot_id: d08Ax94mADIVXc=FxoABM4RJ3IAAA==

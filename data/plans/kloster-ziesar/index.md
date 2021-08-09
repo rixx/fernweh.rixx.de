@@ -36,12 +36,14 @@ plan:
       lon: '12.5657504'
       name: Brandenburg Hbf
     start_location: home
+    transport: train
   - cost: null
     distance: 31.74
     duration: 114
     end_location: null
     komoot_id: d08Ax-RPwC_vLI=F0mABN4grfS5AA==
     start_location: *id001
+    transport: bike
   start_time: null
 visits: []
 ---

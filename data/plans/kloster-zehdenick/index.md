@@ -35,6 +35,7 @@ plan:
     end_location: null
     komoot_id: d08AyTHnwDKalY=FymABKOYrmLMAA==
     start_location: home
+    transport: bike
   start_time: null
 visits: []
 ---

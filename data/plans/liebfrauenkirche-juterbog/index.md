@@ -28,6 +28,7 @@ plan:
   legs:
   - cost: '5'
     distance: 50.54
+    transport: train
     duration: 90
     end_location: &id001
       lat: '52.3940653'
@@ -38,6 +39,7 @@ plan:
     distance: 61.87
     duration: 220
     end_location: null
+    transport: bike
     komoot_id: d08Ax94mADIVXc=FxoABMkY514IAA==
     start_location: *id001
   start_time: null

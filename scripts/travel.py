@@ -406,6 +406,7 @@ def get_journey_data(metadata, entry_type):
         total_duration += int(leg["duration"] or 0)
         total_distance += float(leg["distance"] or 0)
         total_cost += float(leg["cost"] or 0)
+        leg["transport"] = transport
         journey["legs"].append(leg)
 
     journey["distance"] = inquirer.text(

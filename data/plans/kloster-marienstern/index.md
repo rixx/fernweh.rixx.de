@@ -37,12 +37,14 @@ plan:
       lon: '13.5638026'
       name: Bahnhof Doberlug-Kirchhain
     start_location: home
+    transport: train
   - cost: null
     distance: 42.9
     duration: 148
     end_location: null
     komoot_id: d08AxOsBwDO95s=F0mABNXbHS9BAA==
     start_location: *id001
+    transport: bike
   start_time: null
 visits: []
 ---
