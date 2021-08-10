@@ -20,7 +20,7 @@ def get_location_data(address=True, metadata=True):
     nominatim_url = "https://nominatim.openstreetmap.org/search.php"
 
     while not osm_place:
-        name = inquirer.text(message="What’s the name of the location?")
+        name = inquirer.text(message="Please give a name or an address")
         results = request("get", nominatim_url, params={"q": name, "format": "jsonv2"})
         if len(results) == 0:
             print("No location found!")
@@ -40,6 +40,7 @@ def get_location_data(address=True, metadata=True):
             continue
         osm_place = results[chosen]
 
+    name = inquirer.text(message="What’s the name of the location?", default=name)
     location = {
         "name": name,
         "lat": osm_place["lat"],
@@ -153,12 +154,7 @@ def add_wikidata_information(location, wikidata_id):
         result["sitelinks"].get("commonswiki", {}).get("url")
     )
 
-    images = result.get("claims", {}).get("P18")
-    image = None
-    if images:
-        image = images[0]
-        image_filename = image["mainsnak"]["datavalue"]["value"]
-    elif location["urls"]["wikipedia"]:
+    if location["urls"]["wikipedia"]:
         base_url = location["urls"]["wikipedia"][:25]
         title = location["urls"]["wikipedia"].split("/")[-1]
         media_query_url = f"{base_url}w/api.php"
@@ -187,6 +183,12 @@ def add_wikidata_information(location, wikidata_id):
                 image_filename = image_filename.split(":", maxsplit=1)[-1]
         except Exception:
             pass
+    else:
+        images = result.get("claims", {}).get("P18")
+        image = None
+        if images:
+            image = images[0]
+            image_filename = image["mainsnak"]["datavalue"]["value"]
 
     if image_filename:
         image_filename = image_filename.replace(" ", "_")
