@@ -134,7 +134,7 @@ def build_site(**kwargs):
     render(
         "index.html",
         "index.html",
-        plans=sorted(all_plans, key=lambda x: x.overview["distance"]["bike"]),
+        plans=sorted(all_plans, key=lambda x: x.overview["duration"]["total"]),
         reports=all_reports,
     )
 
