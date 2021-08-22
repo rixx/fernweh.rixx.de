@@ -147,10 +147,14 @@ def add_wikidata_information(location, wikidata_id):
     else:
         location["description"] = description_de or description_en
 
-    wikipedia_url = result["sitelinks"].get("dewiki", {}).get(
+    wikipedia_url = result["sitelinks"].get("dewiki", {}).get("url") or result[
+        "sitelinks"
+    ].get("enwiki", {}).get(
         "url"
-    ) or result["sitelinks"].get("enwiki", {}).get("url")  # Sometimes, the wiki link is, uhm.
-    location["urls"]["wikipedia"] = inquirer.text("Wikipedia page", default=wikipedia_url)
+    )  # Sometimes, the wiki link is, uhm.
+    location["urls"]["wikipedia"] = inquirer.text(
+        "Wikipedia page", default=wikipedia_url
+    )
     location["urls"]["wikicommon"] = (
         result["sitelinks"].get("commonswiki", {}).get("url")
     )

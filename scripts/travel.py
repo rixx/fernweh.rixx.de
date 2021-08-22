@@ -442,6 +442,53 @@ def get_journey_data(metadata, entry_type):
     return journey
 
 
+def add_manual_metadata(metadata):
+    metadata["location"]["type"] = inquirer.list_input(
+        message="What type of location is this?",
+        choices=[
+            ("A church or a monastery", "church"),
+            ("A castle", "castle"),
+            ("A city wall", "walls"),
+            ("Another building", "building"),
+            ("Something else", "other"),
+        ],
+        carousel=True,
+    )
+    metadata["location"]["ruin"] = inquirer.list_input(
+        message="Is this location a ruin?",
+        choices=[
+            ("No", "no"),
+            ("Yes", "yes"),
+            ("Partially", "partial"),
+            ("Idk / something else", "other"),
+        ],
+        carousel=True,
+    )
+    metadata["location"]["age"] = inquirer.text(
+        message="How old is the main / interesting part?",
+        default="unknown",
+    )
+    metadata["location"]["groups"] = inquirer.checkbox(
+        message="Which groups does this place belong to?",
+        choices=[
+            "Brandenburg",
+            "Berlin",
+            "Mecklenburg-Vorpommern",
+            "Sachsen-Anhalt",
+            "Straße der Romanik",
+            "Zistiazienser",
+            "Zistiazienserinnen",
+            "Benediktiner",
+            "Benediktinerinnen",
+            "Franziskaner",
+            "Franziskanerinnen",
+            "Prämonstratenser",
+        ],
+        carousel=True,
+    )
+    return metadata
+
+
 def create_journey():
     entry_type = inquirer.list_input(
         message="What type of location is this?",
@@ -460,6 +507,7 @@ def create_journey():
     if not metadata:
         metadata = {"location": get_location_from_input()}
 
+    metadata = add_manual_metadata(metadata)
     journey = get_journey_data(metadata, entry_type=entry_type)
     if entry_type == "reports":
         metadata["visits"] = [journey]
