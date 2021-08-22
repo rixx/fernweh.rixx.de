@@ -19,6 +19,13 @@ location:
   lat: '52.502020900000005'
   lon: '12.016025409968627'
   name: Kloster Jerichow
+  type: church
+  ruin: no
+  age: 1172
+  groups:
+  - Straße der Romanik
+  - Sachsen-Anhalt
+  - Prämonstratenser
   urls:
     home: https://www.kloster-jerichow.de/
     wikicommon: https://commons.wikimedia.org/wiki/Category:Kloster_Jerichow

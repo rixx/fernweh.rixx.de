@@ -19,6 +19,13 @@ location:
   lat: '52.62438615000001'
   lon: '14.20832085'
   name: Klosterkirche Altfriedland
+  type: church
+  ruin: partial
+  age: 1450
+  groups:
+  - Brandenburg
+  - Zistiazienser
+  - Zistiazienserinnen
   urls:
     home: https://www.kultur-altfriedland.de
     wikicommon: https://commons.wikimedia.org/wiki/Category:Kloster_Friedland

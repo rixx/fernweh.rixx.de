@@ -17,6 +17,13 @@ location:
   lat: '51.9906594'
   lon: '13.072764648948855'
   name: Liebfrauenkirche Jüterbog
+  type: church
+  ruin: no
+  age: 1161
+  gropus:
+  - Brandenburg
+  - Zisterzienser
+  - Zisterzienserinnen
   urls:
     wikicommon: https://commons.wikimedia.org/wiki/Category:Liebfrauenkirche_(J%C3%BCterbog)
     wikipedia: https://de.wikipedia.org/wiki/Liebfrauenkirche_(J%C3%BCterbog)

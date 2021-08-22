@@ -19,6 +19,12 @@ location:
   lat: '51.4362544'
   lon: '13.2190458'
   name: Kloster Marienstern
+  ruin: no
+  age: 1228
+  groups:
+  - Brandenburg
+  - Zistiazienser
+  - Zistiazienserinnen
   urls:
     home: http://www.kloster-marienstern.de
     wikicommon: https://commons.wikimedia.org/wiki/Category:Kloster_Marienstern

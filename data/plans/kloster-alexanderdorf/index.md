@@ -19,6 +19,13 @@ location:
   lat: '52.16515755'
   lon: '13.329437184678223'
   name: Kloster Alexanderdorf
+  type: church
+  ruin: no
+  age: 1934
+  groups:
+  - Brandenburg
+  - Benediktiner
+  - Benediktinerinnen
   urls:
     home: http://www.kloster-alexanderdorf.de
     wikicommon: https://commons.wikimedia.org/wiki/Kloster_Alexanderdorf

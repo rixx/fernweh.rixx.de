@@ -19,6 +19,13 @@ location:
   lat: '52.973349549999995'
   lon: '12.992072540503383'
   name: Kloster Lindow
+  type: church
+  ruin: partial
+  age: 1230
+  groups:
+  - Brandenburg
+  - Zisterzienser
+  - Zisterzienserinnen
   urls:
     wikicommon: https://commons.wikimedia.org/wiki/Category:Kloster_Lindow
     wikipedia: https://de.wikipedia.org/wiki/Kloster_Lindow

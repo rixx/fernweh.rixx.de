@@ -19,6 +19,12 @@ location:
   lat: '51.99192105'
   lon: '13.077875002905731'
   name: Mönchenkirche Jüterbog
+  type: church
+  ruin: no
+  age: 1510
+  groups:
+  - Brandenburg
+  - Franziskaner
   urls:
     home: https://www.jueterbog.eu/verzeichnis/visitenkarte.php?mandat=143610
     wikicommon: https://commons.wikimedia.org/wiki/Category:M%C3%B6nchenkirche

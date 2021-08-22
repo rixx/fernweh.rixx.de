@@ -19,6 +19,13 @@ location:
   lat: '53.2653129'
   lon: '13.6187576'
   name: Klosterruine Boitzenburg
+  type: church
+  ruin: yes
+  age: 1271
+  groups:
+  - Brandenburg
+  - Zisterzienser
+  - Zisterzienserinnen
   urls:
     wikicommon: https://commons.wikimedia.org/wiki/Category:Klosterruine_Boitzenburg
     wikipedia: https://de.wikipedia.org/wiki/Klosterruine_Boitzenburg

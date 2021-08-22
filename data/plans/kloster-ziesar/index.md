@@ -19,6 +19,14 @@ location:
   lat: '52.2664823'
   lon: '12.2881982'
   name: Kloster Ziesar
+  type: church
+  ruin: partial
+  age: 1200
+  groups:
+  - Brandenburg
+  - Franziskaner
+  - Zistiazienser
+  - Zistiazienserinnen
   urls:
     wikicommon: https://commons.wikimedia.org/wiki/Category:Kloster_Ziesar
     wikipedia: https://de.wikipedia.org/wiki/Kloster_Ziesar

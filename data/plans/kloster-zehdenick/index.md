@@ -19,6 +19,13 @@ location:
   lat: '52.97778705'
   lon: '13.338400539323594'
   name: kloster zehdenick
+  type: church
+  ruin: yes
+  age: 1250
+  groups:
+  - Brandenburg
+  - Zistiazienser
+  - Zistiazienserinnen
   urls:
     home: https://kloster-zehdenick.de/
     wikicommon: https://commons.wikimedia.org/wiki/Category:Kloster_Zehdenick

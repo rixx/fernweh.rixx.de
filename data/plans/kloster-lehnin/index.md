@@ -20,6 +20,12 @@ location:
   lat: '52.319366599999995'
   lon: '12.72463745396169'
   name: Kloster Lehnin
+  type: church
+  ruin: no
+  age: 1260
+  groups:
+  - Brandenburg
+  - Zistiazienser
   urls:
     home: http://www.klosterkirche-lehnin.de/die-klosterkirche/klosterkirche.html
     wikicommon: https://commons.wikimedia.org/wiki/Category:Kloster_Lehnin?uselang=de

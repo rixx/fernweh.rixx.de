@@ -19,6 +19,11 @@ location:
   lat: '53.16961755'
   lon: '13.745985700292472'
   name: Wasserburg Gerswalde
+  type: castle
+  ruin: yes
+  age: 1239
+  groups:
+  - Brandenburg
   urls:
     wikicommon: https://commons.wikimedia.org/wiki/Category:Burg_Gerswalde
     wikipedia: https://de.wikipedia.org/wiki/Burg_Gerswalde

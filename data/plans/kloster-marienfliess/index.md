@@ -19,6 +19,13 @@ location:
   lat: '53.3192285'
   lon: '12.1433991'
   name: Kloster Marienfließ
+  type: church
+  ruin: no
+  age: 1230
+  groups:
+  - Brandenburg
+  - Zistiazienser
+  - Zistiazienserinnen
   urls:
     home: http://www.marienfliess.de
     wikicommon: https://commons.wikimedia.org/wiki/Category:Kloster_Marienflie%C3%9F
