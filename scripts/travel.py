@@ -476,15 +476,14 @@ def add_manual_metadata(metadata):
             "Mecklenburg-Vorpommern",
             "Sachsen-Anhalt",
             "Straße der Romanik",
-            "Zistiazienser",
-            "Zistiazienserinnen",
+            "Zisterzienser",
+            "Zisterzienserinnen",
             "Benediktiner",
             "Benediktinerinnen",
             "Franziskaner",
             "Franziskanerinnen",
             "Prämonstratenser",
         ],
-        carousel=True,
     )
     return metadata
 
