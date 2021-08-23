@@ -476,6 +476,7 @@ def add_manual_metadata(metadata):
             "Mecklenburg-Vorpommern",
             "Sachsen-Anhalt",
             "Straße der Romanik",
+            "Routen der Romanik",
             "Zisterzienser",
             "Zisterzienserinnen",
             "Benediktiner",

@@ -26,6 +26,7 @@ location:
   groups:
   - Brandenburg
   - Zistiazienser
+  - Routen der Romanik
   urls:
     home: http://www.klosterkirche-lehnin.de/die-klosterkirche/klosterkirche.html
     wikicommon: https://commons.wikimedia.org/wiki/Category:Kloster_Lehnin?uselang=de

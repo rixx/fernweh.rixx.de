@@ -24,6 +24,7 @@ location:
   age: 1172
   groups:
   - Straße der Romanik
+  - Routen der Romanik
   - Sachsen-Anhalt
   - Prämonstratenser
   urls:
